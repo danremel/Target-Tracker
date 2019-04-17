@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
-    <app-target-form></app-target-form>
+    <app-target-form
+      (targetAdded)="onTargetAdded($event)">
+    </app-target-form>
   </div>
   <div class="row">
     <div class="col-xs-8">
-      <app-targets></app-targets>
+      <app-target
+        *ngFor="let target of targets"
+        [target]="target">
+      </app-target>
     </div>
     <div class="col-xs-4">
       <app-target-details></app-target-details>
