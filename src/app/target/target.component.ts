@@ -9,6 +9,8 @@ import { TargetsService } from '../targets.service';
 })
 export class TargetComponent implements OnInit {
   @Input() target: Target;
+  @Input() id: number;
+  
   @Output() targetRemoved = new EventEmitter<Target>();
   
   constructor(private targetsService: TargetsService) { }

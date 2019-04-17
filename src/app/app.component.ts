@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Target } from './shared/target.model';
 import { TargetsService } from './targets.service';
 
@@ -8,7 +8,6 @@ import { TargetsService } from './targets.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @Output() targetSelected = new EventEmitter<Target>();
 
   selectedTarget: Target;
 
@@ -36,6 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   onSelectTarget(index) {
+    this.targetsService.getTargetIndex.emit(index);
     this.targetsService.targetSelected.emit(this.targets[index]);
     console.log(this.targets[index]);
   }

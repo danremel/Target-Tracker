@@ -1,5 +1,59 @@
 <div class="row">
   <div class="col-xs-12">
-    {{ target.compName }}
+    <div class="well">
+      <div *ngIf="target !== undefined; else noTarget">
+        <div *ngIf="!editing">
+          <h4>{{ target.compName }}</h4>
+          <p><strong>Address: </strong>{{ target.compAddress }}</p>
+          <p><strong>Date of First Contact: </strong>{{ target.dateFirstContact | date }}</p>
+          <p><strong>Days Since First Contact: </strong>{{ target.daysSinceFirstContact }}</p>
+          <p><strong>Industry: </strong>{{ target.industry }}</p>
+          <p><strong>Website: </strong><a href="{{ target.website }}">{{ target.website }}</a></p>
+          <p><strong>Type: </strong>{{ target.type }}</p>
+          <p><strong>Revenue: </strong>{{ target.revenue }}</p>
+          <p><strong>Status: </strong>{{ target.status }}</p>
+          <!-- <p><strong>Key Contacts: </strong>{{ target.contacts[0].name }}</p> -->
+
+          <button class="btn btn-default" (click)="onEditTarget()"><i class="glyphicon glyphicon-pencil"></i></button>
+        </div>
+        <div *ngIf="editing">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editCompName">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editCompAddress">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editDateFirstContact">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editDaysSinceFirstContact">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editIndustry">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editWebsite">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editType">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editRevenue">
+          <input 
+            type="text" class="form-control"
+            [(ngModel)]="editStatus">
+
+          <div class="btn-group">
+            <button class="btn btn-default" (click)="onCancelEdit()"><i class="glyphicon glyphicon-ban-circle"></i></button>
+            <button class="btn btn-success" (click)="onSaveTarget()"><i class="glyphicon glyphicon-ok"></i></button>
+          </div>
+        </div>
+      </div>
+      <ng-template #noTarget>
+        <h4 class="text-center">Select a Target</h4>
+      </ng-template>
+    </div>
   </div>
 </div>
