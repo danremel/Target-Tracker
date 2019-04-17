@@ -33,4 +33,8 @@ export class AppComponent {
       contacts: []
     });
   }
+
+  onTargetRemoved(index) {
+    this.targets.splice(index, 1);
+  }
 }

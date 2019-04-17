@@ -33,6 +33,6 @@ export class TargetFormComponent implements OnInit {
       type: '',
       contacts: []
     })
-    console.log("button hit");
   }
+  
 }
