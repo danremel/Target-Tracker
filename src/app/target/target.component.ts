@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Target } from '../shared/target.model';
+import { TargetsService } from '../targets.service';
 
 @Component({
   selector: 'app-target',
@@ -9,8 +10,8 @@ import { Target } from '../shared/target.model';
 export class TargetComponent implements OnInit {
   @Input() target: Target;
   @Output() targetRemoved = new EventEmitter<Target>();
-
-  constructor() { }
+  
+  constructor(private targetsService: TargetsService) { }
 
   ngOnInit() {
   }

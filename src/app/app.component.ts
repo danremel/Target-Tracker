@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Target } from './shared/target.model';
+import { TargetsService } from './targets.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  targets: Target[] = [{
-    compName: 'Test Co.', 
-    compAddress: '123 Easy Street', 
-    dateFirstContact: '2019-04-15', 
-    daysSinceFirstContact: 3, 
-    industry: 'Testing', 
-    website: 'example.com', 
-    type: 'Company - Private',
-    revenue: '$500K per year',
-    status: 'Approved',
-    contacts: []
-  }]
+export class AppComponent implements OnInit {
+  @Output() targetSelected = new EventEmitter<Target>();
+
+  selectedTarget: Target;
+
+  targets: Target[] = [];
+
+  constructor(private targetsService: TargetsService) {}
+  
+  ngOnInit() {
+    this.targets = this.targetsService.targets;
+  }
   
   onTargetAdded(targetData: Target) {
     this.targets.push({
@@ -32,6 +33,11 @@ export class AppComponent {
       type: '',
       contacts: []
     });
+  }
+
+  onSelectTarget(index) {
+    this.targetsService.targetSelected.emit(this.targets[index]);
+    console.log(this.targets[index]);
   }
 
   onTargetRemoved(index) {

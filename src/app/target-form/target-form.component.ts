@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { Target } from '../shared/target.model';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+import { TargetsService } from '../targets.service';
 
 @Component({
   selector: 'app-target-form',
@@ -7,7 +8,6 @@ import { Target } from '../shared/target.model';
   styleUrls: ['./target-form.component.css']
 })
 export class TargetFormComponent implements OnInit {
-  @Output() targetAdded = new EventEmitter<Target>();
 
   @ViewChild('compNameInput') compNameInput: ElementRef;
   @ViewChild('compAddressInput') compAddressInput: ElementRef; 
@@ -15,13 +15,13 @@ export class TargetFormComponent implements OnInit {
   @ViewChild('revenueInput') revenueInput: ElementRef; 
   @ViewChild('statusInput') statusInput: ElementRef;
 
-  constructor() { }
+  constructor(private targetsService : TargetsService) { }
 
   ngOnInit() {
   }
 
   onAddTarget() {
-    this.targetAdded.emit({
+    this.targetsService.addTarget({
       compName: this.compNameInput.nativeElement.value,
       compAddress: this.compAddressInput.nativeElement.value,
       industry: this.industryInput.nativeElement.value,
@@ -32,7 +32,7 @@ export class TargetFormComponent implements OnInit {
       website: '',
       type: '',
       contacts: []
-    })
+    });
   }
-  
+
 }

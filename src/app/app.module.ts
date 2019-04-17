@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TargetFormComponent } from './target-form/target-form.component';
 import { TargetComponent } from './target/target.component';
-import { TargetDetailsComponent } from './target/target-details/target-details.component';
+import { TargetDetailsComponent } from './target-details/target-details.component';
+import { TargetsService } from './targets.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { TargetDetailsComponent } from './target/target-details/target-details.c
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [TargetsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
