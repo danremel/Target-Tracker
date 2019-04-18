@@ -1,10 +1,6 @@
+import { EventEmitter } from '@angular/core';
+
 import { Target } from './shared/target.model';
-import { Contact } from './target/contact.model';
-
-import { EventEmitter, Injectable } from '@angular/core';
-import { ContactsService } from './contacts.service';
-
-@Injectable()
 
 export class TargetsService {
 	targets: Target[] = [
