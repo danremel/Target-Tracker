@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   onSelectTarget(index) {
     this.targetsService.getTargetIndex.emit(index);
     this.targetsService.targetSelected.emit(this.targets[index]);
-    // this.contactsService.loadedContacts.emit(this.targets[index].contacts);
   }
 
   onTargetRemoved(index) {

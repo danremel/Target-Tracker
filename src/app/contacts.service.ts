@@ -18,14 +18,9 @@ export class ContactsService {
             (target: Target) => {
                 this.target = target;
                 this.contacts = target.contacts;
-                console.log(this.target.contacts);
             }
         )
     }
-
-    // getTargetContacts() {
-    //     this.target.contacts = this.contacts;
-    // }
 
     addTargetContact(cData: Contact) {
         this.target.contacts.push({
@@ -34,8 +29,6 @@ export class ContactsService {
             emailAddress: cData.emailAddress,
             role: cData.role
         })
-        // this.getTargetContacts();
         this.addedContact.emit(this.contacts);
-        console.log(this.contacts);
     }
 }

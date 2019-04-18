@@ -13,7 +13,6 @@ import { ContactsService } from '../../contacts.service';
 })
 export class TargetDetailsComponent implements OnInit {
   @Input() target: Target;
-  @Input() contact: Contact;
 
   @ViewChild('contactName') contactName: ElementRef;
   @ViewChild('contactPhone') contactPhone: ElementRef;
