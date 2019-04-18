@@ -44,15 +44,13 @@ export class TargetsService {
 	}
 
 	updateTarget(id: number, editData: Target) {
-		this.targets[id].compName = editData.compName;
-		this.targets[id].compAddress = editData.compAddress;
-		this.targets[id].dateFirstContact = editData.dateFirstContact;
-		this.targets[id].daysSinceFirstContact = editData.daysSinceFirstContact;
-		this.targets[id].industry = editData.industry;
-		this.targets[id].website = editData.website;
-		this.targets[id].type = editData.type;
-		this.targets[id].revenue = editData.revenue;
-		this.targets[id].status = editData.status;
-		this.targets[id].contacts = [];
+		const keys = Object.keys(this.targets[id]);
+		for(const key of keys) {
+			if(key == 'contacts') {
+				continue;
+			} else {
+				this.targets[id][key] = editData[key];
+			}
+		}
 	}
 }
