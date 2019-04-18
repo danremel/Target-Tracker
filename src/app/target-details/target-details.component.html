@@ -19,30 +19,36 @@
         <div *ngIf="editing">
           <input 
             type="text" class="form-control"
+            placeholder="Company Name"
             [(ngModel)]="editCompName">
           <input 
             type="text" class="form-control"
+            placeholder="Address"
             [(ngModel)]="editCompAddress">
           <input 
             type="date" class="form-control"
+            placeholder="Date of First Contact"
             [(ngModel)]="editDateFirstContact">
+          <p><strong>Days Since First Contact: </strong>--</p>
           <input 
             type="text" class="form-control"
-            [(ngModel)]="editDaysSinceFirstContact">
-          <input 
-            type="text" class="form-control"
+            placeholder="Industry"
             [(ngModel)]="editIndustry">
           <input 
             type="text" class="form-control"
+            placeholder="Company Website"
             [(ngModel)]="editWebsite">
           <input 
             type="text" class="form-control"
+            placeholder="Company Type"
             [(ngModel)]="editType">
           <input 
             type="text" class="form-control"
+            placeholder="Revenue"
             [(ngModel)]="editRevenue">
           <input 
             type="text" class="form-control"
+            placeholder="Status"
             [(ngModel)]="editStatus">
 
           <div class="btn-group">
