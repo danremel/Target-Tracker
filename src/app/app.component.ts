@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private targetsService: TargetsService) {}
   
   ngOnInit() {
+    // Populate the targets from the service
     this.targets = this.targetsService.targets;
   }
   

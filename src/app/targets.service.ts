@@ -24,6 +24,13 @@ export class TargetsService {
 		}
 	];
 
+	statuses: string[] = [
+		'Researching',
+		'Pending Approval',
+		'Approved',
+		'Declined'
+	];
+
 	getTargetIndex = new EventEmitter<number>();
 	targetSelected = new EventEmitter<Target>();
 	targetUpdated = new EventEmitter<Target>();

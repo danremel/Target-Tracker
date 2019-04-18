@@ -1,6 +1,14 @@
 <div class="row">
   <div class="col-xs-12">
-      <div class="form-inline">
+    <div *ngIf="!formShowing">
+      <a (click)="formShowing = true" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> Add a Target</a>
+    </div>
+    <div *ngIf="formShowing">
+      <div>
+        <a (click)="formShowing = false" style="cursor: pointer;"><i class="glyphicon glyphicon-minus"></i> Close</a>
+      </div>
+      
+      <div class="my-form-container">
         <div class="form-group">
           <label for="compName">Company Name:</label>
           <input 
@@ -26,17 +34,6 @@
             class="form-control"
             #industryInput>
         </div>
-      </div>
-
-      <div class="form-inline">
-        <div class="form-group">
-          <label for="revenue">Revenue</label>
-          <input 
-            type="text" 
-            id="revenue"
-            class="form-control"
-            #revenueInput>
-        </div>
 
         <div class="form-group">
           <label for="status">Status:</label>
@@ -45,17 +42,16 @@
             id="status"
             class="form-control"
             #statusInput>
-            <option selected value=""></option>
-            <option value="Researching">Researching</option>
-            <option value="Pending Approval">Pending Approval</option>
-            <option value="Approved">Approved</option>
-            <option value="Declined">Declined</option>
+            <option selected disabled value="">-- Select a Status --</option>
+            <option *ngFor="let status of statuses">{{ status }}</option>
           </select>
         </div>
-      </div>
 
-      <button 
-        class="btn btn-primary"
-        (click)="onAddTarget()">Submit</button>  
+
+        <button 
+          class="btn btn-primary submit-button"
+          (click)="onAddTarget()">Submit</button> 
+      </div>
+    </div> 
   </div>
 </div>

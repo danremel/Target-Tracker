@@ -1,3 +1,18 @@
-input, select {
-    margin: 10px;
+.my-form-container {
+    display: inline-flex;
+    align-items: center;
+}
+
+div.form-group {
+    padding: 10px;
+}
+
+.submit-button {
+    height: fit-content;
+}
+
+@media screen and (max-width: 768px) {
+    .my-form-row {
+        display: block;
+    }
 }

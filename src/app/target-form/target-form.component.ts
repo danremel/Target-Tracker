@@ -8,16 +8,20 @@ import { TargetsService } from '../targets.service';
   styleUrls: ['./target-form.component.css']
 })
 export class TargetFormComponent implements OnInit {
+  statuses: string[] = [];
+  formShowing = false;
 
   @ViewChild('compNameInput') compNameInput: ElementRef;
   @ViewChild('compAddressInput') compAddressInput: ElementRef; 
   @ViewChild('industryInput') industryInput: ElementRef; 
-  @ViewChild('revenueInput') revenueInput: ElementRef; 
   @ViewChild('statusInput') statusInput: ElementRef;
 
   constructor(private targetsService : TargetsService) { }
 
   ngOnInit() {
+    // fill the status options from the service
+    this.statuses = this.targetsService.statuses;
+
   }
 
   onAddTarget() {
@@ -25,8 +29,8 @@ export class TargetFormComponent implements OnInit {
       compName: this.compNameInput.nativeElement.value,
       compAddress: this.compAddressInput.nativeElement.value,
       industry: this.industryInput.nativeElement.value,
-      revenue: this.revenueInput.nativeElement.value,
       status: this.statusInput.nativeElement.value,
+      revenue: '',
       dateFirstContact: '',
       daysSinceFirstContact: null,
       website: '',

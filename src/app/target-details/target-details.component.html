@@ -46,10 +46,13 @@
             type="text" class="form-control"
             placeholder="Revenue"
             [(ngModel)]="editRevenue">
-          <input 
+          <select 
             type="text" class="form-control"
             placeholder="Status"
             [(ngModel)]="editStatus">
+            <option disabled value="">-- Select a Status --</option>
+            <option *ngFor="let status of statuses">{{ status }}</option>
+          </select>
 
           <div class="btn-group">
             <button class="btn btn-default" (click)="onCancelEdit()"><i class="glyphicon glyphicon-ban-circle"></i></button>

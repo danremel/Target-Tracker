@@ -13,6 +13,7 @@ export class TargetDetailsComponent implements OnInit {
   id: number;
   editing = false;
 
+  statuses: string[] = [];
 
   editCompName: string;
   editCompAddress: string;
@@ -49,6 +50,7 @@ export class TargetDetailsComponent implements OnInit {
     this.editType = this.target.type;
     this.editRevenue = this.target.revenue;
     this.editStatus = this.target.status;
+    this.statuses = this.targetsService.statuses;
     this.editing = true;
   }
 
