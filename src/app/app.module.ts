@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { TargetFormComponent } from './target-form/target-form.component';
 import { TargetComponent } from './target/target.component';
-import { TargetDetailsComponent } from './target-details/target-details.component';
+import { TargetDetailsComponent } from './target/target-details/target-details.component';
 import { TargetsService } from './targets.service';
+import { ContactsService } from './contacts.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,10 @@ import { TargetsService } from './targets.service';
     BrowserModule,
     FormsModule
   ],
-  providers: [TargetsService],
+  providers: [
+    TargetsService,
+    ContactsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,10 @@
 import { Target } from './shared/target.model';
-import { EventEmitter } from '@angular/core';
+import { Contact } from './target/contact.model';
+
+import { EventEmitter, Injectable } from '@angular/core';
+import { ContactsService } from './contacts.service';
+
+@Injectable()
 
 export class TargetsService {
 	targets: Target[] = [
@@ -13,14 +18,7 @@ export class TargetsService {
 			type: 'Company - Private',
 			revenue: '$500K per year',
 			status: 'Approved',
-			contacts: [
-				{
-					name: 'Joe Schmoe',
-					phoneNumber: '123-456-7890',
-					emailAddress: 'hello@test.com',
-					role: 'CEO'
-				}
-			]
+			contacts: []
 		}
 	];
 
@@ -35,6 +33,8 @@ export class TargetsService {
 	targetSelected = new EventEmitter<Target>();
 	targetUpdated = new EventEmitter<Target>();
 
+	constructor() {}
+
 	addTarget(tData: Target) {
 		this.targets.push({
 			compName: tData.compName,
@@ -47,7 +47,7 @@ export class TargetsService {
 			website: '',
 			type: '',
 			contacts: []
-		})
+		});
 	}
 
 	updateTarget(id: number, editData: Target) {

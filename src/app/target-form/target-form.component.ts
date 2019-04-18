@@ -21,7 +21,6 @@ export class TargetFormComponent implements OnInit {
   ngOnInit() {
     // fill the status options from the service
     this.statuses = this.targetsService.statuses;
-
   }
 
   onAddTarget() {

@@ -12,7 +12,46 @@
           <p><strong>Type: </strong>{{ target.type }}</p>
           <p><strong>Revenue: </strong>{{ target.revenue }}</p>
           <p><strong>Status: </strong>{{ target.status }}</p>
-          <!-- <p><strong>Key Contacts: </strong>{{ target.contacts[0].name }}</p> -->
+          <p><strong>Key Contacts: </strong></p>
+            <ul *ngFor="let contact of contacts; let i = index">
+              <li>{{ contact.name }}</li>
+            </ul>
+          <div>
+            <a (click)="onToggleContactForm()" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> Add a Contact</a>
+          </div>
+
+          <div *ngIf="addingContact">
+              <a (click)="onToggleContactForm()" style="cursor: pointer;"><i class="glyphicon glyphicon-minus"></i> Close</a>
+            <div class="form-group">
+              <label for="cName">Name:</label>
+              <input 
+                type="text" class="form-control"
+                #contactName>
+            </div>
+            <div class="form-group">
+              <label for="cPhone">Phone Number:</label>
+              <input 
+                type="text" class="form-control"
+                #contactPhone>
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Email Address:</label>
+              <input 
+                type="text" class="form-control"
+                #contactEmail>
+            </div>
+            <div class="form-group">
+              <label for="cRole">Role:</label>
+              <input 
+                type="text" class="form-control"
+                #contactRole>
+            </div>
+            <button 
+              class="btn btn-primary btn-sm"
+              (click)="onAddContact()">
+              <i class="glyphicon glyphicon-plus"></i> Add Contact
+            </button>
+          </div>
 
           <button class="btn btn-default" (click)="onEditTarget()"><i class="glyphicon glyphicon-pencil"></i></button>
         </div>

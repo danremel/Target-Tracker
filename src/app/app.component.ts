@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Target } from './shared/target.model';
 import { TargetsService } from './targets.service';
+import { ContactsService } from './contacts.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
 
   targets: Target[] = [];
 
-  constructor(private targetsService: TargetsService) {}
+  constructor(private targetsService: TargetsService,
+              private contactsService: ContactsService) {}
   
   ngOnInit() {
     // Populate the targets from the service
@@ -38,7 +40,7 @@ export class AppComponent implements OnInit {
   onSelectTarget(index) {
     this.targetsService.getTargetIndex.emit(index);
     this.targetsService.targetSelected.emit(this.targets[index]);
-    console.log(this.targets[index]);
+    // this.contactsService.loadedContacts.emit(this.targets[index].contacts);
   }
 
   onTargetRemoved(index) {
