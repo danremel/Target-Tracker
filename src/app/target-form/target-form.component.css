@@ -7,10 +7,6 @@ div.form-group {
     padding: 10px;
 }
 
-.submit-button {
-    height: fit-content;
-}
-
 @media screen and (max-width: 768px) {
     .my-form-row {
         display: block;

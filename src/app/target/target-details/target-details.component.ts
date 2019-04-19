@@ -116,10 +116,6 @@ export class TargetDetailsComponent implements OnInit {
     this.addingContact = false;
   }
 
-  onRemoveContact() {
-    
-  }
-
   /* -- End Contacts -- */
 
   onCancelEdit() {

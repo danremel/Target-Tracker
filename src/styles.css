@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #F5F5F6;
+}
+
+.target-container {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #524900;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.target-container .target-heading {
+  color: #fff;
+  background-color: #827717;
+  padding: 10px 15px;
+  border-bottom: 1px solid #524c00;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.target-container .target-body {
+  padding: 15px;
+  background-color: #F5F5F6;
+}
+
+.target-container .target-footer {
+  padding: 10px 15px;
+  background-color: #E1E2E1;
+  border-top: 1px solid #524c00;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+i {
+  cursor: pointer;
+  color: #fff;
+  font-size: 2rem;
+}
+
+input, select {
+  background: none;
+  border-style: none;
+  border-bottom: 1px solid #524c00;
+}
+
+select {
+  border-radius: 0;
+}
+
+input#compName::-webkit-input-placeholder {
+  color: #fff;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+:-moz-placeholder {
+  font-style: italic;
+}
+
+::-moz-placeholder {
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  font-style: italic;
+}
+/*# sourceMappingURL=styles.css.map */

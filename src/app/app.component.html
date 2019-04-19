@@ -7,10 +7,10 @@
 </nav>
 <div class="container">
   <div class="row">
-    <app-target-form></app-target-form>
-  </div>
-  <div class="row">
-    <div class="col-xs-8">
+    <div class="col-xs-4">
+      <div>
+        <app-target-form></app-target-form>
+      </div>
       <app-target
         *ngFor="let target of targets; let i = index"
         [target]="target"
@@ -19,8 +19,8 @@
         (targetRemoved)="onTargetRemoved(i)">
       </app-target>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-8">
         <app-target-details></app-target-details>
-      </div>
+    </div>
   </div>
 </div>

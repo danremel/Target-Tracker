@@ -1,18 +1,5 @@
-<div class="panel panel-info">
-  <div class="panel-heading clearfix">
-    <h4>{{ target.compName }}</h4>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <p class="col-xs-6"><strong>Address: </strong>{{ target.compAddress }}</p>
-      <p class="col-xs-6"><strong>Industry: </strong>{{ target.industry }}</p>
-    </div>
-    <div class="row">
-      <p class="col-xs-6"><strong>Revenue: </strong>{{ target.revenue }}</p>
-      <p class="col-xs-6"><strong>Status: </strong>{{ target.status }}</p>
-    </div>
-  </div>
-  <div class="panel-footer clearfix">
-    <span class="pull-right" style="cursor: pointer;" (click)="onRemoveTarget()"><i class="glyphicon glyphicon-remove"></i></span>
+<div class="target-container">
+  <div class="target-heading clearfix">
+    <h4>{{ target.compName }}<p class="pull-right"><strong>Status: </strong>{{ target.status }}</p></h4>
   </div>
 </div>

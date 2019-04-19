@@ -14,7 +14,14 @@ export class TargetsService {
 			type: 'Company - Private',
 			revenue: '$500K per year',
 			status: 'Approved',
-			contacts: []
+			contacts: [
+				{
+					name: 'Joe Schmoe',
+					phoneNumber: '1234567890',
+					emailAddress: 'joe@schmoe.com',
+					role: 'Resident Joe'
+				}
+			]
 		}
 	];
 

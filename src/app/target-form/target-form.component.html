@@ -1,57 +1,61 @@
 <div class="row">
   <div class="col-xs-12">
     <div *ngIf="!formShowing">
-      <a (click)="formShowing = true" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> Add a Target</a>
+      <div class="target-container">
+        <div class="target-heading clearfix">
+          <h4 (click)="formShowing = true"> Add a Target<i class="pull-right glyphicon glyphicon-plus-sign"></i></h4>
+        </div>
+      </div>
     </div>
     <div *ngIf="formShowing">
-      <div>
-        <a (click)="formShowing = false" style="cursor: pointer;"><i class="glyphicon glyphicon-minus"></i> Close</a>
-      </div>
-      
-      <div class="my-form-container">
-        <div class="form-group">
-          <label for="compName">Company Name:</label>
-          <input 
-            type="text"
-            id="compName"
-            class="form-control"
-            #compNameInput>
+      <div class="target-container">
+        <div class="target-heading">
+        <h4 (click)="formShowing = false" class="pull-right" style="cursor: pointer;"><i class="glyphicon glyphicon-minus-sign"></i></h4>
+          <div class="form-group">
+            <input 
+              style="color: #fff;"
+              type="text"
+              id="compName"
+              placeholder="Company Name"
+              #compNameInput>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="compAddress">Address:</label>
-          <input 
-            type="text" 
-            id="compAddress"
-            class="form-control"
-            #compAddressInput>
-        </div>
+        <div class="target-body">
+          <div class="form-group">
+            <input 
+              type="text" 
+              id="compAddress"
+              placeholder="Address"
+              #compAddressInput>
+          </div>
+    
+          <div class="form-group">
+            <input 
+              type="text" 
+              id="industry"
+              placeholder="Industry"
+              #industryInput>
+          </div>
   
-        <div class="form-group">
-          <label for="industry">Industry:</label>
-          <input 
-            type="text" 
-            id="industry"
-            class="form-control"
-            #industryInput>
+          <div class="form-group">
+            <select 
+              name="status" 
+              id="status"
+              placeholder="Status"
+              #statusInput>
+              <option selected disabled value="">-- Select a Status --</option>
+              <option *ngFor="let status of statuses">{{ status }}</option>
+            </select>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label for="status">Status:</label>
-          <select 
-            name="status" 
-            id="status"
-            class="form-control"
-            #statusInput>
-            <option selected disabled value="">-- Select a Status --</option>
-            <option *ngFor="let status of statuses">{{ status }}</option>
-          </select>
-        </div>
-
-
-        <button 
+        <div class="target-footer">  
+          <button 
           class="btn btn-primary submit-button"
           (click)="onAddTarget()">Submit</button> 
+        </div>
+        </div>
+
       </div>
-    </div> 
+      
   </div>
 </div>
