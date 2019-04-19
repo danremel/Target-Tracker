@@ -42,7 +42,4 @@ export class AppComponent implements OnInit {
     this.targetsService.targetSelected.emit(this.targets[index]);
   }
 
-  onTargetRemoved(index) {
-    this.targets.splice(index, 1);
-  }
 }

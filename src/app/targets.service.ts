@@ -29,8 +29,6 @@ export class TargetsService {
 	targetSelected = new EventEmitter<Target>();
 	targetUpdated = new EventEmitter<Target>();
 
-	constructor() {}
-
 	addTarget(tData: Target) {
 		this.targets.push({
 			compName: tData.compName,
@@ -56,4 +54,9 @@ export class TargetsService {
 			}
 		}
 	}
+
+	removeTarget(index: number) {
+		this.targets.splice(index, 1);
+	}
+
 }

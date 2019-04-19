@@ -98,6 +98,10 @@ export class TargetDetailsComponent implements OnInit {
   /* -- End Target -- */
 
   /* -- Contacts -- */
+  onSelectContact(index) {
+    this.contactsService.getContactIndex.emit(index);
+  };
+
   onToggleContactForm() {
     this.addingContact = !this.addingContact;
   };
@@ -110,6 +114,10 @@ export class TargetDetailsComponent implements OnInit {
       role: this.contactRole.nativeElement.value
     })
     this.addingContact = false;
+  }
+
+  onRemoveContact() {
+    
   }
 
   /* -- End Contacts -- */

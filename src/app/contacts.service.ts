@@ -14,6 +14,8 @@ export class ContactsService {
 
     loadedContacts = new EventEmitter<Contact[]>();
     addedContact = new EventEmitter<Contact[]>();
+    getContactIndex = new EventEmitter<number>();
+
 
     constructor(private targetsService: TargetsService) {
         this.targetsService.targetSelected.subscribe(
@@ -32,5 +34,17 @@ export class ContactsService {
             role: cData.role
         })
         this.addedContact.emit(this.contacts);
+    }
+
+    updateContact(id: number, editData: Contact) {
+        const contact = this.target.contacts[id];
+        const keys = Object.keys(contact);
+        for(const key of keys) {
+            contact[key] = editData[key];
+        }
+    }
+
+    removeContact(index: number) {
+        this.contacts.splice(index, 1);
     }
 }

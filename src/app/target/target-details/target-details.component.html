@@ -2,7 +2,9 @@
   <div class="col-xs-12">
     <div class="well">
       <div *ngIf="target !== undefined; else noTarget">
+        <!-- Target Details Display -->
         <div *ngIf="!editing">
+          <button class="btn btn-default pull-right" (click)="onEditTarget()"><i class="glyphicon glyphicon-pencil"></i></button>
           <h4>{{ target.compName }}</h4>
           <p><strong>Address: </strong>{{ target.compAddress }}</p>
           <p><strong>Date of First Contact: </strong>{{ target.dateFirstContact | date }}</p>
@@ -12,49 +14,57 @@
           <p><strong>Type: </strong>{{ target.type }}</p>
           <p><strong>Revenue: </strong>{{ target.revenue }}</p>
           <p><strong>Status: </strong>{{ target.status }}</p>
-          <p><strong>Key Contacts: </strong></p>
-            <ul *ngFor="let contact of contacts; let i = index">
-              <li>{{ contact.name }}</li>
-            </ul>
-          <div>
-            <a (click)="onToggleContactForm()" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> Add a Contact</a>
-          </div>
-
+          <p><strong>Key Contacts: </strong>
+            <a *ngIf="!addingContact" (click)="onToggleContactForm()"><i class="glyphicon glyphicon-plus"></i> Add a Contact</a>
+            <a *ngIf="addingContact" (click)="onToggleContactForm()"><i class="glyphicon glyphicon-minus"></i> Close</a>
+          </p>
+          <!-- New Contact Form -->
           <div *ngIf="addingContact">
-              <a (click)="onToggleContactForm()" style="cursor: pointer;"><i class="glyphicon glyphicon-minus"></i> Close</a>
             <div class="form-group">
               <label for="cName">Name:</label>
               <input 
-                type="text" class="form-control"
-                #contactName>
+              type="text" class="form-control"
+              #contactName>
             </div>
-            <div class="form-group">
-              <label for="cPhone">Phone Number:</label>
-              <input 
+              <div class="form-group">
+                <label for="cPhone">Phone Number:</label>
+                <input 
                 type="text" class="form-control"
                 #contactPhone>
-            </div>
-            <div class="form-group">
-              <label for="cEmail">Email Address:</label>
-              <input 
+              </div>
+              <div class="form-group">
+                <label for="cEmail">Email Address:</label>
+                <input 
                 type="text" class="form-control"
                 #contactEmail>
-            </div>
-            <div class="form-group">
-              <label for="cRole">Role:</label>
-              <input 
+              </div>
+              <div class="form-group">
+                <label for="cRole">Role:</label>
+                <input 
                 type="text" class="form-control"
                 #contactRole>
-            </div>
-            <button 
+              </div>
+              <button 
               class="btn btn-primary btn-sm"
               (click)="onAddContact()">
               <i class="glyphicon glyphicon-plus"></i> Add Contact
             </button>
           </div>
+          <!-- END New Contact Form -->
 
-          <button class="btn btn-default" (click)="onEditTarget()"><i class="glyphicon glyphicon-pencil"></i></button>
+          <!-- Contact Component -->
+          <app-contact
+            *ngFor="let contact of contacts; let i = index"
+            [contact]="contact"
+            [id]="i"
+            (click)="onSelectContact(i)">
+          </app-contact>
+          <!-- END Contact Component -->
+
         </div>
+        <!-- END Target Details Display -->
+        
+        <!-- Edit Target Details (NOT Contacts) -->
         <div *ngIf="editing">
           <input 
             type="text" class="form-control"
@@ -98,10 +108,12 @@
             <button class="btn btn-success" (click)="onSaveTarget()"><i class="glyphicon glyphicon-ok"></i></button>
           </div>
         </div>
-      </div>
-      <ng-template #noTarget>
-        <h4 class="text-center">Select a Target</h4>
-      </ng-template>
+        <!-- END Edit Target Details -->
     </div>
+    
+    <!-- If No Target is selected -->
+    <ng-template #noTarget>
+      <h4 class="text-center">Select a Target</h4>
+    </ng-template>
   </div>
 </div>

@@ -1,0 +1,7 @@
+summary, a {
+    cursor: pointer;
+}
+
+details::hover {
+    text-decoration: underline;
+}

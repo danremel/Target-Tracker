@@ -8,6 +8,7 @@ import { TargetComponent } from './target/target.component';
 import { TargetDetailsComponent } from './target/target-details/target-details.component';
 import { TargetsService } from './targets.service';
 import { ContactsService } from './contacts.service';
+import { ContactComponent } from './target/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ContactsService } from './contacts.service';
     TargetFormComponent,
     TargetComponent,
     TargetDetailsComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
