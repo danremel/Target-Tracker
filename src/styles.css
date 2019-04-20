@@ -1,12 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Arimo");
 body {
   background-color: #F5F5F6;
+  font-family: 'Arimo', sans-serif !important;
 }
 
 .target-container {
   margin-bottom: 20px;
   background-color: #fff;
-  border: 1px solid #524900;
+  border: 1px solid #524c00;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -14,11 +16,16 @@ body {
 
 .target-container .target-heading {
   color: #fff;
-  background-color: #827717;
+  background-color: #827410;
   padding: 10px 15px;
   border-bottom: 1px solid #524c00;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+
+.target-container .target-heading:hover {
+  background-color: #524c00;
+  cursor: pointer;
 }
 
 .target-container .target-body {
@@ -34,6 +41,17 @@ body {
   border-bottom-left-radius: 3px;
 }
 
+.navbar-default {
+  background-color: #b4a242;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #524c00;
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+}
+
 i {
   cursor: pointer;
   color: #fff;
@@ -41,13 +59,15 @@ i {
 }
 
 input, select {
+  border: none;
   background: none;
-  border-style: none;
-  border-bottom: 1px solid #524c00;
+  outline: 0;
+  border-bottom: 1px solid;
+  border-bottom-color: #b4a242;
 }
 
-select {
-  border-radius: 0;
+select#status {
+  font-style: italic;
 }
 
 input#compName::-webkit-input-placeholder {

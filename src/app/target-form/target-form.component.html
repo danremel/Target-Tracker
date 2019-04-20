@@ -8,53 +8,55 @@
       </div>
     </div>
     <div *ngIf="formShowing">
-      <div class="target-container">
-        <div class="target-heading">
-        <h4 (click)="formShowing = false" class="pull-right" style="cursor: pointer;"><i class="glyphicon glyphicon-minus-sign"></i></h4>
-          <div class="form-group">
-            <input 
-              style="color: #fff;"
-              type="text"
-              id="compName"
-              placeholder="Company Name"
-              #compNameInput>
+      <form [formGroup]="newTargetForm">
+        <div class="target-container">
+          <div class="target-heading">
+          <h4 (click)="formShowing = false" class="pull-right" style="cursor: pointer;"><i class="glyphicon glyphicon-minus-sign"></i></h4>
+            <div class="form-group">
+              <input 
+                required
+                style="color: #fff;"
+                type="text"
+                id="compName"
+                placeholder="Company Name"
+                formControlName="compName">
+            </div>
           </div>
-        </div>
-        <div class="target-body">
-          <div class="form-group">
-            <input 
-              type="text" 
-              id="compAddress"
-              placeholder="Address"
-              #compAddressInput>
-          </div>
+          <div class="target-body">
+            <div class="form-group">
+              <input 
+                type="text" 
+                id="compAddress"
+                placeholder="Address"
+                formControlName="compAddress">
+            </div>
+      
+            <div class="form-group">
+              <input 
+                type="text" 
+                id="industry"
+                placeholder="Industry"
+                formControlName="industry">
+            </div>
     
-          <div class="form-group">
-            <input 
-              type="text" 
-              id="industry"
-              placeholder="Industry"
-              #industryInput>
+            <div class="form-group">
+              <select 
+                name="status" 
+                id="status"
+                formControlName="status">
+                <option class="select-placeholder" selected disabled value="">-- Select a Status --</option>
+                <option *ngFor="let status of statuses">{{ status }}</option>
+              </select>
+            </div>
           </div>
-  
-          <div class="form-group">
-            <select 
-              name="status" 
-              id="status"
-              placeholder="Status"
-              #statusInput>
-              <option selected disabled value="">-- Select a Status --</option>
-              <option *ngFor="let status of statuses">{{ status }}</option>
-            </select>
+          <div class="target-footer">  
+            <input
+              type="submit" value="Submit"
+              class="btn btn-primary submit-button"
+              (click)="onAddTarget()">
           </div>
         </div>
-        <div class="target-footer">  
-          <button 
-          class="btn btn-primary submit-button"
-          (click)="onAddTarget()">Submit</button> 
-        </div>
-        </div>
-
+      </form>
       </div>
       
   </div>

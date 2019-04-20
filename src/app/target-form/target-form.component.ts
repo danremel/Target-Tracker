@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TargetsService } from '../targets.service';
 
@@ -11,31 +12,45 @@ export class TargetFormComponent implements OnInit {
   statuses: string[] = [];
   formShowing = false;
 
-  @ViewChild('compNameInput') compNameInput: ElementRef;
-  @ViewChild('compAddressInput') compAddressInput: ElementRef; 
-  @ViewChild('industryInput') industryInput: ElementRef; 
-  @ViewChild('statusInput') statusInput: ElementRef;
+  newTargetForm: FormGroup;
 
-  constructor(private targetsService : TargetsService) { }
+  constructor(private targetsService : TargetsService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     // fill the status options from the service
     this.statuses = this.targetsService.statuses;
+
+    this.blankForm();
+  }
+  
+  blankForm() {
+    this.newTargetForm = this.formBuilder.group({
+      compName: ['', Validators.required],
+      compAddress: '',
+      industry: '',
+      status: ''
+    });
   }
 
   onAddTarget() {
-    this.targetsService.addTarget({
-      compName: this.compNameInput.nativeElement.value,
-      compAddress: this.compAddressInput.nativeElement.value,
-      industry: this.industryInput.nativeElement.value,
-      status: this.statusInput.nativeElement.value,
-      revenue: '',
-      dateFirstContact: '',
-      daysSinceFirstContact: null,
-      website: '',
-      type: '',
-      contacts: []
-    });
+    if(this.newTargetForm.invalid) {
+      return;
+    } else {
+      this.targetsService.addTarget({
+        compName: this.newTargetForm.value.compName,
+        compAddress: this.newTargetForm.value.compAddress,
+        industry: this.newTargetForm.value.industry,
+        status: this.newTargetForm.value.status,
+        revenue: '',
+        dateFirstContact: '',
+        daysSinceFirstContact: null,
+        website: '',
+        type: '',
+        contacts: []
+      });
+    }
+    this.blankForm();
   }
 
 }

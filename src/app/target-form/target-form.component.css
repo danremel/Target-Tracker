@@ -12,3 +12,7 @@ div.form-group {
         display: block;
     }
 }
+
+input#compName:invalid:not(.ng-pristine) {
+    border-bottom: 1px solid #dd0000cb;
+}
