@@ -30,32 +30,39 @@
             </p>
             <!-- New Contact Form -->
             <div *ngIf="addingContact">
-              <div class="form-group">
-                <label for="cName">Name:</label>
-                <input 
-                  type="text" class="form-control"
-                  #contactName>
-              </div>
-              <div class="form-group">
-                <label for="cPhone">Phone Number:</label>
-                <input 
-                  type="text" class="form-control"
-                  #contactPhone>
-              </div>
-              <div class="form-group">
-                <label for="cEmail">Email Address:</label>
-                <input 
-                  type="email" class="form-control"
-                  #contactEmail>
-              </div>
-              <div class="form-group">
-                <label for="cRole">Role:</label>
-                <input 
-                  type="text" class="form-control"
-                  #contactRole>
-              </div>              
-              <i class="glyphicon glyphicon-plus-sign"
-                (click)="onAddContact()"></i>
+              <form [formGroup]="newContactForm">
+                <div class="form-group">
+                  <label>Name:</label>
+                  <input 
+                    required
+                    type="text"
+                    formControlName="name">
+                </div>
+                <div class="form-group">
+                  <label>Phone Number:</label>
+                  <input 
+                    type="text"
+                    formControlName="phoneNumber">
+                </div>
+                <div class="form-group">
+                  <label>Email Address:</label>
+                  <input 
+                    type="email"
+                    formControlName="emailAddress">
+                </div>
+                <div class="form-group">
+                  <label>Role:</label>
+                  <input 
+                    type="text"
+                    formControlName="role">
+                </div>
+                <i class="glyphicon glyphicon-plus-sign">
+                  <input 
+                    type="submit"
+                    class="hidden"
+                    (click)="onAddContact()">
+                </i>
+              </form>
             </div>
             <!-- END New Contact Form -->
 
@@ -73,47 +80,72 @@
         
         <!-- Edit Target Details (NOT Contacts) -->
         <div *ngIf="editing">
-          <input 
-            type="text" class="form-control"
-            placeholder="Company Name"
-            [(ngModel)]="editCompName">
-          <input 
-            type="text" class="form-control"
-            placeholder="Address"
-            [(ngModel)]="editCompAddress">
-          <input 
-            type="date" class="form-control"
-            placeholder="Date of First Contact"
-            [(ngModel)]="editDateFirstContact">
-          <p><strong>Days Since First Contact: </strong>--</p>
-          <input 
-            type="text" class="form-control"
-            placeholder="Industry"
-            [(ngModel)]="editIndustry">
-          <input 
-            type="text" class="form-control"
-            placeholder="Company Website"
-            [(ngModel)]="editWebsite">
-          <input 
-            type="text" class="form-control"
-            placeholder="Company Type"
-            [(ngModel)]="editType">
-          <input 
-            type="text" class="form-control"
-            placeholder="Revenue"
-            [(ngModel)]="editRevenue">
-          <select 
-            type="text" class="form-control"
-            placeholder="Status"
-            [(ngModel)]="editStatus">
-            <option disabled value="">-- Select a Status --</option>
-            <option *ngFor="let status of statuses">{{ status }}</option>
-          </select>
-
-          <i class="glyphicon glyphicon-ban-circle"
-            (click)="onCancelEdit()"></i>
-          <i class="glyphicon glyphicon-ok-sign"
-            (click)="onSaveTarget()"></i>
+          <form [formGroup]="editTargetForm">
+            <div class="details-heading">
+              <i class="pull-right glyphicon glyphicon-ban-circle"
+                (click)="onCancelEdit()">
+              </i>
+              <div class="form-group">
+                <input 
+                  type="text"
+                  required
+                  placeholder="Company Name"
+                  formControlName="compName">
+              </div>
+            </div>
+            <div class="details-body">
+              <div class="form-group">
+                <input 
+                type="text"
+                placeholder="Address"
+                formControlName="compAddress">
+              </div>
+              <div class="form-group">
+                <input 
+                type="date"
+                placeholder="Date of First Contact"
+                formControlName="dateFirstContact">
+              </div>
+              <p><strong>Days Since First Contact: </strong>{{ daysSinceFirstContact == null ? "--" : daysSinceFirstContact }}</p>
+              <div class="form-group">
+                <input 
+                  type="text"
+                  placeholder="Industry"
+                  formControlName="industry">
+              </div>
+              <div class="form-group">
+                <input 
+                type="text"
+                placeholder="Company Website"
+                formControlName="website">
+              </div>
+              <div class="form-group">
+                <input 
+                type="text"
+                placeholder="Company Type"
+                formControlName="type">
+              </div>
+              <div class="form-group">
+                <input 
+                type="text"
+                placeholder="Revenue"
+                formControlName="revenue">
+              </div>
+              <div class="form-group">
+                <select 
+                  type="text"
+                  placeholder="Status"
+                  formControlName="status">
+                  <option disabled value="">-- Select a Status --</option>
+                  <option *ngFor="let status of statuses">{{ status }}</option>
+                </select>
+              </div>
+              <input 
+                type="submit"
+                class="hidden"
+                (click)="onSaveTarget()">
+            </div>
+          </form>
         </div>
         <!-- END Edit Target Details -->
     </div>

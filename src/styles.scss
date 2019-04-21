@@ -84,6 +84,11 @@ input#compName::-webkit-input-placeholder {
     color: $white;
 } 
 
+
+input:invalid:not(.ng-pristine) {
+    border-bottom: 1px solid #dd0000cb;
+}
+
 ::-webkit-input-placeholder {
     font-style: italic;
 }

@@ -9,33 +9,45 @@
 
 <div *ngIf="editing" class="clearfix">
   <div class="pull-right">
-    <h4 style="cursor: pointer;" 
-      (click)="editing = false">
-      <i class="glyphicon glyphicon-ban-circle"></i>
-    </h4>
-    <h4 style="cursor: pointer;" 
-      (click)="onSaveContact()">
-      <i class="glyphicon glyphicon-ok-sign"></i>
-    </h4>
-    <h4 style="cursor: pointer;" 
-      (click)="onRemoveContact()">
-      <i class="glyphicon glyphicon-remove-sign"></i>
-    </h4>
+    <i 
+      class="glyphicon glyphicon-ban-circle"
+      (click)="editing = false"></i>
+    <i 
+      class="glyphicon glyphicon-ok-sign"
+      (click)="onSaveContact()"></i>
+    <i 
+      class="glyphicon glyphicon-remove-sign"
+      (click)="onRemoveContact()"></i>
   </div>
-  <label for="">Name: </label>
-  <input 
-    type="text" class="form-control"
-    [(ngModel)]="editName">
-  <label for="">Phone Number: </label>
-  <input 
-    type="text" class="form-control"
-    [(ngModel)]="editPhone">
-  <label for="">Email Address: </label>
-  <input 
-    type="text" class="form-control"
-    [(ngModel)]="editEmail">
-  <label for="">Role: </label>
-  <input 
-    type="text" class="form-control"
-    [(ngModel)]="editRole">
+  <form [formGroup]="editContactForm">
+    <div class="form-group">
+      <label for="">Name: </label>
+      <input 
+      type="text"
+      required
+      formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="">Phone Number: </label>
+      <input 
+        type="text"
+        formControlName="phoneNumber">
+    </div>
+    <div class="form-group">
+      <label for="">Email Address: </label>
+      <input 
+        type="email"
+        formControlName="emailAddress">
+    </div>
+    <div class="form-group">
+      <label for="">Role: </label>
+      <input 
+        type="text"
+        formControlName="role">
+    </div>
+    <input 
+      type="submit"
+      class="hidden"
+      (click)="onSaveContact()">
+  </form>
 </div>
