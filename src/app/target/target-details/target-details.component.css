@@ -34,10 +34,10 @@ a:hover {
     cursor: pointer;
 }
 
-p > a.open-form {
+a.to-open {
     color: #827717;
 }
 
-p > a.close-form {
+a.to-close {
     color: #bb4d00;
 }

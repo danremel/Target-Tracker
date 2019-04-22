@@ -21,6 +21,8 @@ export class TargetDetailsComponent implements OnInit {
   id: number;
   editing = false;
   addingContact = false;
+  confirming = false;
+
   today = moment(new Date()).format('YYYY-MM-DD');
 
   editTargetForm: FormGroup;
@@ -49,6 +51,8 @@ export class TargetDetailsComponent implements OnInit {
       (target: Target) => {
         this.target = target
         this.contacts = this.contactsService.contacts;
+        this.editing = false;
+        this.confirming = false;
       }
     );
     this.targetsService.targetUpdated.subscribe(
@@ -82,6 +86,7 @@ export class TargetDetailsComponent implements OnInit {
       contacts: this.target.contacts
     })
     this.statuses = this.targetsService.statuses;
+    this.confirming = false;
     this.editing = true;
   };
 
@@ -107,6 +112,11 @@ export class TargetDetailsComponent implements OnInit {
       this.editing = false;
     }
   };
+
+  onRemoveTarget() {
+    this.targetsService.removeTarget(this.id);
+    this.target = undefined;
+  }
 
   /* -- End Target -- */
 
