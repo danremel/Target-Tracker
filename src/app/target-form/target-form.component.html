@@ -3,19 +3,20 @@
     <div *ngIf="!formShowing">
       <div class="target-container">
         <div class="target-heading clearfix">
-          <h4 (click)="formShowing = true"> Add a Target<i class="pull-right glyphicon glyphicon-plus-sign"></i></h4>
+          <h4 (click)="toggleTargetForm()"> Add a Target<i class="pull-right glyphicon glyphicon-plus-sign"></i></h4>
         </div>
       </div>
     </div>
     <div *ngIf="formShowing">
-      <form [formGroup]="newTargetForm">
+      <form 
+        [formGroup]="newTargetForm"
+        (keydown.esc)="toggleTargetForm()">
         <div class="target-container">
           <div class="target-heading">
-          <h4 (click)="formShowing = false" class="pull-right" style="cursor: pointer;"><i class="glyphicon glyphicon-minus-sign"></i></h4>
+          <h4 (click)="toggleTargetForm()" class="pull-right"><i class="glyphicon glyphicon-minus-sign"></i></h4>
             <div class="form-group">
               <input 
                 required
-                style="color: #fff;"
                 type="text"
                 id="compName"
                 placeholder="Company Name"

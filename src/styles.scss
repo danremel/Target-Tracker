@@ -5,6 +5,8 @@ $primaryDark: #524c00;
 $primaryMed: #827410;
 $primaryLight: #b4a242;
 
+$orangeDark: #bb4d00;
+
 $grayDark: #E1E2E1;
 $grayLight: #F5F5F6;
 
@@ -65,6 +67,14 @@ i {
     cursor: pointer;
     color: $white;
     font-size: 2rem;
+
+    &:hover {
+        color: $primaryLight;
+    }
+
+    &.glyphicon.glyphicon-remove-sign:hover {
+        color: $orangeDark;
+    }
 }
 
 input, select {
@@ -82,7 +92,11 @@ select#status {
 
 input#compName::-webkit-input-placeholder {
     color: $white;
-} 
+}
+
+input[type="date" i]::-webkit-input-placeholder {
+    font-style: italic;
+}
 
 
 input:invalid:not(.ng-pristine) {

@@ -58,6 +58,14 @@ i {
   font-size: 2rem;
 }
 
+i:hover {
+  color: #b4a242;
+}
+
+i.glyphicon.glyphicon-remove-sign:hover {
+  color: #bb4d00;
+}
+
 input, select {
   border: none;
   background: none;
@@ -72,6 +80,10 @@ select#status {
 
 input#compName::-webkit-input-placeholder {
   color: #fff;
+}
+
+input[type="date" i]::-webkit-input-placeholder {
+  font-style: italic;
 }
 
 input:invalid:not(.ng-pristine) {

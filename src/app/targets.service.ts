@@ -10,7 +10,7 @@ export class TargetsService {
 			dateFirstContact: '2019-04-15',
 			daysSinceFirstContact: 3,
 			industry: 'Testing',
-			website: 'example.com',
+			website: 'https://www.google.com',
 			type: 'Company - Private',
 			revenue: '$500K per year',
 			status: 'Approved',

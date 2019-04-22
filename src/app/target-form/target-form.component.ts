@@ -10,7 +10,7 @@ import { TargetsService } from '../targets.service';
 })
 export class TargetFormComponent implements OnInit {
   statuses: string[] = [];
-  formShowing = false;
+  formShowing: boolean = false;
 
   newTargetForm: FormGroup;
 
@@ -20,7 +20,10 @@ export class TargetFormComponent implements OnInit {
   ngOnInit() {
     // fill the status options from the service
     this.statuses = this.targetsService.statuses;
-
+  }
+  
+  toggleTargetForm() {
+    this.formShowing = !this.formShowing;
     this.blankForm();
   }
   
@@ -50,7 +53,7 @@ export class TargetFormComponent implements OnInit {
         contacts: []
       });
     }
-    this.blankForm();
+    this.toggleTargetForm();
   }
 
 }

@@ -7,79 +7,88 @@
           <div class="details-heading">
             <i class="pull-right glyphicon glyphicon-edit"
               (click)="onEditTarget()"></i>
-            <h4>{{ target.compName }}</h4>
+            <h4 
+              (dblclick)="onEditTarget()">
+              {{ target.compName }}
+            </h4>
           </div>
           <div class="details-body">
-            <p><strong>Address: </strong>{{ target.compAddress }}</p>
-            <p><strong>Date of First Contact: </strong>{{ target.dateFirstContact | date }}</p>
-            <p><strong>Days Since First Contact: </strong>{{ target.daysSinceFirstContact }}</p>
-            <p><strong>Industry: </strong>{{ target.industry }}</p>
-            <p><strong>Website: </strong><a href="{{ target.website }}">{{ target.website }}</a></p>
-            <p><strong>Type: </strong>{{ target.type }}</p>
-            <p><strong>Revenue: </strong>{{ target.revenue }}</p>
-            <p><strong>Status: </strong>{{ target.status }}</p>
-            <p><strong>Key Contacts: </strong>
-              <i 
-                class="glyphicon glyphicon-plus-sign"
-                *ngIf="!addingContact" 
-                (click)="onToggleContactForm()"></i>
-              <i 
-                class="glyphicon glyphicon-minus-sign"
-                *ngIf="addingContact"
-                (click)="onToggleContactForm()"></i>
-            </p>
-            <!-- New Contact Form -->
-            <div *ngIf="addingContact">
-              <form [formGroup]="newContactForm">
-                <div class="form-group">
-                  <label>Name:</label>
-                  <input 
-                    required
-                    type="text"
-                    formControlName="name">
+            <div class="row">
+              <div class="col-xs-6">
+                <p><strong>Address: </strong>{{ target.compAddress }}</p>
+                <p><strong>Date of First Contact: </strong>{{ target.dateFirstContact | date }}</p>
+                <p><strong>Days Since First Contact: </strong>{{ target.daysSinceFirstContact }}</p>
+                <p><strong>Industry: </strong>{{ target.industry }}</p>
+                <p><strong>Website: </strong><a href="{{ target.website }}">{{ target.website }}</a></p>
+                <p><strong>Type: </strong>{{ target.type }}</p>
+                <p><strong>Revenue: </strong>{{ target.revenue }}</p>
+                <p><strong>Status: </strong>{{ target.status }}</p>
+              </div>
+              <div class="col-xs-6">
+                <p><strong>Key Contacts: </strong></p>
+                <p><a (click)="onToggleContactForm()">{{ addingContact ? 'Close' : 'Add a Contact' }}</a></p>
+                  <!-- <i 
+                    class="glyphicon" 
+                    [ngClass]="addingContact ? 'glyphicon-minus-sign' : 'glyphicon-plus-sign'"
+                    (click)="onToggleContactForm()"> 
+                  </i> -->
+                
+                <!-- New Contact Form -->
+                <div *ngIf="addingContact">
+                  <form 
+                    [formGroup]="newContactForm" 
+                    (keydown.esc)="onToggleContactForm()">
+                    <div class="form-group">
+                      <label>Name:</label>
+                      <input 
+                        required
+                        type="text"
+                        formControlName="name">
+                    </div>
+                    <div class="form-group">
+                      <label>Phone Number:</label>
+                      <input 
+                        type="text"
+                        formControlName="phoneNumber">
+                    </div>
+                    <div class="form-group">
+                      <label>Email Address:</label>
+                      <input 
+                        type="email"
+                        formControlName="emailAddress">
+                    </div>
+                    <div class="form-group">
+                      <label>Role:</label>
+                      <input 
+                        type="text"
+                        formControlName="role">
+                    </div>
+                    <input 
+                      type="submit"
+                      class="hidden"
+                      (click)="onAddContact()">
+                  </form>
                 </div>
-                <div class="form-group">
-                  <label>Phone Number:</label>
-                  <input 
-                    type="text"
-                    formControlName="phoneNumber">
-                </div>
-                <div class="form-group">
-                  <label>Email Address:</label>
-                  <input 
-                    type="email"
-                    formControlName="emailAddress">
-                </div>
-                <div class="form-group">
-                  <label>Role:</label>
-                  <input 
-                    type="text"
-                    formControlName="role">
-                </div>
-                <i class="glyphicon glyphicon-plus-sign">
-                  <input 
-                    type="submit"
-                    class="hidden"
-                    (click)="onAddContact()">
-                </i>
-              </form>
-            </div>
-            <!-- END New Contact Form -->
+                <!-- END New Contact Form -->
+    
+                <!-- Contact Component -->
+                <app-contact
+                  *ngFor="let contact of contacts; let i = index"
+                  [contact]="contact"
+                  [id]="i"
+                  (click)="onSelectContact(i)">
+                </app-contact>
+                <!-- END Contact Component -->
+              </div>
 
-            <!-- Contact Component -->
-            <app-contact
-              *ngFor="let contact of contacts; let i = index"
-              [contact]="contact"
-              [id]="i"
-              (click)="onSelectContact(i)">
-            </app-contact>
-            <!-- END Contact Component -->
+            </div>
           </div>
+          <!-- END .target-details -->
         </div>
         <!-- END Target Details Display -->
         
         <!-- Edit Target Details (NOT Contacts) -->
-        <div *ngIf="editing">
+        <div *ngIf="editing" (keydown.esc)="onCancelEdit()">
           <form [formGroup]="editTargetForm">
             <div class="details-heading">
               <i class="pull-right glyphicon glyphicon-ban-circle"
@@ -101,12 +110,12 @@
                 formControlName="compAddress">
               </div>
               <div class="form-group">
+                <p><strong>Date of First Contact: </strong></p>
                 <input 
                 type="date"
-                placeholder="Date of First Contact"
                 formControlName="dateFirstContact">
               </div>
-              <p><strong>Days Since First Contact: </strong>{{ daysSinceFirstContact == null ? "--" : daysSinceFirstContact }}</p>
+              <p><strong>Days Since First Contact: </strong>{{ daysSinceFirstContact == null ? '--' : daysSinceFirstContact }}</p>
               <div class="form-group">
                 <input 
                   type="text"

@@ -25,6 +25,14 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  toggleEditContact() { 
+    if(this.editing) {
+      this.editing = false;
+    } else {
+      this.onEditContact();
+    }
+  }
   
   onEditContact() {
     this.editContactForm = this.formBuilder.group(contactFormModel);

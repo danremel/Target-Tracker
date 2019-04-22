@@ -1,11 +1,3 @@
-summary, a {
-    cursor: pointer;
-}
-
-details::hover {
-    text-decoration: underline;
-}
-
 .details-container {
     min-height: 20px;
     margin-bottom: 20px;

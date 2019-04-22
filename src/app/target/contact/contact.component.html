@@ -1,6 +1,6 @@
 <div *ngIf="!editing">  
   <details>
-    <summary>{{ contact.name }} <h4 class="pull-right" style="cursor: pointer;" (click)="onEditContact()"><i class="glyphicon glyphicon-edit"></i></h4></summary>
+    <summary (dblclick)="toggleEditContact()">{{ contact.name }}</summary>
     <li><strong>Phone Number: </strong>{{ contact.phoneNumber }}</li>
     <li><strong>Email Address: </strong>{{ contact.emailAddress }}</li>
     <li><strong>Role: </strong>{{ contact.role }}</li>
@@ -10,16 +10,13 @@
 <div *ngIf="editing" class="clearfix">
   <div class="pull-right">
     <i 
-      class="glyphicon glyphicon-ban-circle"
-      (click)="editing = false"></i>
-    <i 
-      class="glyphicon glyphicon-ok-sign"
-      (click)="onSaveContact()"></i>
-    <i 
       class="glyphicon glyphicon-remove-sign"
-      (click)="onRemoveContact()"></i>
+      (click)="onRemoveContact()">
+    </i>
   </div>
-  <form [formGroup]="editContactForm">
+  <form 
+    [formGroup]="editContactForm"
+    (keydown.esc)="toggleEditContact()">
     <div class="form-group">
       <label for="">Name: </label>
       <input 
