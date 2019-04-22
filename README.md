@@ -4,7 +4,7 @@ This application was built using Angular 7 with TypeScript, with layout and styl
 
 A live version of this application is hosted via github-pages at:
 
-danremel.github.io/Target-Tracker
+https://danremel.github.io/Target-Tracker
 
 ### CRUD Functionality
 
