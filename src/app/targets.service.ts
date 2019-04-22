@@ -1,29 +1,10 @@
 import { EventEmitter } from '@angular/core';
+import * as moment from 'moment';
 
 import { Target } from './shared/target.model';
 
 export class TargetsService {
-	targets: Target[] = [
-		{
-			compName: 'Test Co.',
-			compAddress: '123 Easy Street',
-			dateFirstContact: '2019-04-15',
-			daysSinceFirstContact: 3,
-			industry: 'Testing',
-			website: 'https://www.google.com',
-			type: 'Company - Private',
-			revenue: '$500K per year',
-			status: 'Approved',
-			contacts: [
-				{
-					name: 'Joe Schmoe',
-					phoneNumber: '1234567890',
-					emailAddress: 'joe@schmoe.com',
-					role: 'Resident Joe'
-				}
-			]
-		}
-	];
+	targets: Target[] = [];
 
 	statuses: string[] = [
 		'Researching',
@@ -56,6 +37,12 @@ export class TargetsService {
 		for(const key of keys) {
 			if(key == 'contacts') {
 				continue;
+			} else if(key == 'daysSinceFirstContact') {
+				// Use Moment.js to calculate the days since the Date of First Contact
+				const firstContact = moment(this.targets[id].dateFirstContact, "YYYY-MM-DD");
+				const today = moment().startOf('day');
+				// Since retroactive date differences are counted as negative, use Math.abs to switch it to positive.
+				this.targets[id][key] = Math.abs(moment.duration(firstContact.diff(today)).asDays());
 			} else {
 				this.targets[id][key] = editData[key];
 			}

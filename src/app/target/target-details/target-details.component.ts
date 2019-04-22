@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 
 import { Target } from '../../shared/target.model';
 import { Contact } from '../contact.model';
@@ -20,6 +21,7 @@ export class TargetDetailsComponent implements OnInit {
   id: number;
   editing = false;
   addingContact = false;
+  today = moment(new Date()).format('YYYY-MM-DD');
 
   editTargetForm: FormGroup;
   newContactForm: FormGroup;
@@ -61,6 +63,7 @@ export class TargetDetailsComponent implements OnInit {
     if(this.target !== undefined){
       this.target.contacts = this.contacts;
     }
+
   }
    
   /* -- Target -- */
@@ -114,13 +117,17 @@ export class TargetDetailsComponent implements OnInit {
   };
 
   onAddContact(){
-    this.contactsService.addTargetContact({
-      name: this.newContactForm.value.name,
-      phoneNumber: this.newContactForm.value.phoneNumber,
-      emailAddress: this.newContactForm.value.emailAddress,
-      role: this.newContactForm.value.role
-    })
-    this.addingContact = false;
+    if(this.newContactForm.invalid) {
+      return;
+    } else {
+      this.contactsService.addTargetContact({
+        name: this.newContactForm.value.name,
+        phoneNumber: this.newContactForm.value.phoneNumber,
+        emailAddress: this.newContactForm.value.emailAddress,
+        role: this.newContactForm.value.role
+      })
+      this.addingContact = false;
+    }
   }
 
   /* -- End Contacts -- */
