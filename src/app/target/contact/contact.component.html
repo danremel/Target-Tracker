@@ -46,5 +46,27 @@
       type="submit"
       class="hidden"
       (click)="onSaveContact()">
+    <div>
+      <a
+        *ngIf="!confirming" 
+        style="color: #bb4d00;"
+        (click)="confirming = true">
+        Delete Contact
+      </a>
+      <div
+        *ngIf="confirming">
+        <p><strong>Are you sure?</strong></p>
+        <a
+          style="color: #000;"
+          (click)="confirming = false"><i class="glyphicon glyphicon-ban-circle"></i>
+          Cancel
+        </a>
+        <a
+          style="color: #bb4d00;"
+          (click)="onRemoveContact()"><i class="glyphicon glyphicon-remove-sign"></i>
+          Confirm
+        </a>
+      </div>
+    </div>
   </form>
 </div>

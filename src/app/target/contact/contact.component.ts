@@ -17,6 +17,7 @@ export class ContactComponent implements OnInit {
   @Input() id: number;
 
   editing = false;
+  confirming = false;
 
   editContactForm: FormGroup;
 
@@ -43,6 +44,7 @@ export class ContactComponent implements OnInit {
       role: this.contact.role
     })    
     this.editing = true;
+    this.confirming = false;
   }
 
   onSaveContact() {
@@ -58,6 +60,7 @@ export class ContactComponent implements OnInit {
         }
       )
       this.editing = false;
+      this.confirming = false;
     }
   }
 

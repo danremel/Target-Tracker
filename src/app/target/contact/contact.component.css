@@ -1,3 +1,4 @@
-summary:hover {
+summary:hover,
+a:hover {
     cursor: pointer;
 }
