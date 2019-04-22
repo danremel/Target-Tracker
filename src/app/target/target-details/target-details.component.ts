@@ -86,22 +86,26 @@ export class TargetDetailsComponent implements OnInit {
   };
 
   onSaveTarget() {
-    this.targetsService.updateTarget(this.id, 
-    {
-        compName: this.editTargetForm.value.compName,
-        compAddress: this.editTargetForm.value.compAddress,
-        dateFirstContact: this.editTargetForm.value.dateFirstContact,
-        daysSinceFirstContact: this.editTargetForm.value.daysSinceFirstContact,
-        industry: this.editTargetForm.value.industry,
-        website: this.editTargetForm.value.website,
-        type: this.editTargetForm.value.type,
-        revenue: this.editTargetForm.value.revenue,
-        status: this.editTargetForm.value.status,
-        contacts: this.target.contacts
-      }
-    );
-    this.targetsService.targetUpdated.emit(this.target)
-    this.editing = false;
+    if(this.editTargetForm.invalid) {
+      return;
+    } else {
+      this.targetsService.updateTarget(this.id, 
+      {
+          compName: this.editTargetForm.value.compName,
+          compAddress: this.editTargetForm.value.compAddress,
+          dateFirstContact: this.editTargetForm.value.dateFirstContact,
+          daysSinceFirstContact: this.editTargetForm.value.daysSinceFirstContact,
+          industry: this.editTargetForm.value.industry,
+          website: this.editTargetForm.value.website,
+          type: this.editTargetForm.value.type,
+          revenue: this.editTargetForm.value.revenue,
+          status: this.editTargetForm.value.status,
+          contacts: this.target.contacts
+        }
+      );
+      this.targetsService.targetUpdated.emit(this.target)
+      this.editing = false;
+    }
   };
 
   /* -- End Target -- */
