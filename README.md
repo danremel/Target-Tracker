@@ -28,7 +28,7 @@ By using models, I was able to easily standardize the Target and Contact metadat
 
 The forms in use were refactored multiple times, each time improving upon the previous iteration. Starting with passing @ViewChild fields into the components, I found ngModel to be even more useful, especially when editing existing data.
 
-Finally, I discovered the FormBuilder tool made available by @angular/forms. With this, I was able to include the Validators tool to ensure that certain requirements were met when entering/editing data.
+Finally, I discovered the ReactiveForms tool made available by @angular/forms. With this, I was able to include the Validators tool to ensure that certain requirements were met when entering/editing data.
 
 I found that the most efficient way to handle the forms (when handling the same data model) was to create a shared form model that can be imported and implemented wherever necessary. This was more effective than having to rebuild the forms in each component.
 
